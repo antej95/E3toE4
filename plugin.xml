@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+	<!-- e4 now -->
+	<extension point="org.eclipse.e4.workbench.model" id="e4toE4.menutest.fragment">
+      <fragment
+            apply="initial"
+            uri="fragment.e4xmi">
+      </fragment>
+   </extension>
+   <!-- e3 now -->
+	<extension point="org.eclipse.ui.menus">
+		<menuContribution allPopups="false" locationURI="menu:org.eclipse.ui.main.menu?after=additions">
+			<menu id="e3viewtest.menu" label="E3menu">
+				<visibleWhen
+                  checkEnabled="false">
+            	</visibleWhen>
+            	<command
+                  commandId="e3viewtest.menu.commands.e3menutest"
+                  style="push">
+                </command>
+			</menu>
+		</menuContribution>
+	</extension>
+	<extension point="org.eclipse.ui.commands">
+		<command
+            categoryId="org.eclipse.ui.category.project"
+            id="e3viewtest.menu.commands.e3menutest"
+            name="E3 MenuTest">
+      </command>
+	</extension>
+	<extension point="org.eclipse.ui.handlers">
+		<handler
+            class="e3viewtest.menu.command_handlers.E3MenuTest"
+            commandId="e3viewtest.menu.commands.e3menutest">
+      </handler>
+	</extension>
+   <extension
+         point="org.eclipse.ui.views">
+      <category
+            name="Sample Category"
+            id="e3viewtest">
+      </category>
+      <view
+            id="e3viewtest.views.SampleView"
+            name="Sample View"
+            icon="icons/sample.png"
+            class="e3viewtest.views.SampleView"
+            category="e3viewtest"
+            inject="true">
+      </view>
+   </extension>
+   <extension
+         point="org.eclipse.ui.perspectiveExtensions">
+      <perspectiveExtension
+            targetID="org.eclipse.jdt.ui.JavaPerspective">
+         <view
+               id="e3viewtest.views.SampleView"
+               relative="org.eclipse.ui.views.ProblemView"
+               relationship="right"
+               ratio="0.5">
+         </view>
+      </perspectiveExtension>
+   </extension>
+   <extension
+         point="org.eclipse.help.contexts">
+      <contexts
+            file="contexts.xml">
+      </contexts>
+   </extension>
+	
+</plugin>
